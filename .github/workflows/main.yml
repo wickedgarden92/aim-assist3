@@ -1,0 +1,22 @@
+name: Build Geode Mod
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Geode mod
+        uses: geode-sdk/build-geode-mod@main
+
+      - name: Upload compiled mod
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build Output
+          path: "**/*.geode"
